@@ -1,0 +1,43 @@
+1- Obtindre els primers 15 clients ordenats pel camp idClient de forma ascendent.
+
+SELECT *
+FROM Clients
+ORDER BY IdCliente ASC
+LIMIT 15;
+
+
+2- Obtindre la suma de la baseImponible, i quàntes factures té el client amb CIF A7789118.
+SELECT SUM(baseImponible) as SumaBaseImponible, COUNT(*) as NumeroFacturas
+FROM Factures
+WHERE idClient IN (SELECT idClient FROM Clients WHERE CIF = 'A7789118');
+
+3- Obtindre totes les factures en les que apareix eel Producte amb idProducte = 35
+SELECT Factures.*
+FROM Factures
+JOIN Linies_Factura ON Factures.idFactura = Linies_Factura.idFactura
+WHERE Linies_Factura.idProducte = 35;
+
+
+4- Eliminar totes les Factures dels clients amb CIF que comenci amb ‘C’ i que tinguin una
+baseImponible més gran de 1000€
+
+DELETE Linies_Factura
+FROM Linies_Factura
+JOIN Factures ON Linies_Factura.idFactura = Factures.idFactura
+JOIN Clients ON Factures.idClient = Clients.idClient
+WHERE Clients.CIF LIKE 'C%' AND Factures.baseImponible > 1000;
+
+DELETE Factures
+FROM Factures
+JOIN Clients ON Factures.idClient = Clients.idClient
+WHERE Clients.CIF LIKE 'C%' AND Factures.baseImponible > 1000;
+
+
+5- Actualitzar l’estatPagament de totes les Factures a l’estat ‘Pagat’ de totes les factures en
+les que apareguin Productes amb un preuVenda > preuCost
+
+UPDATE Factures
+JOIN Linies_Factura ON Factures.idFactura = Linies_Factura.idFactura
+JOIN Productes ON Linies_Factura.idProducte = Productes.idProducte
+SET Factures.estatPagament = 1
+WHERE Productes.preuVenda > Productes.preuCost;
