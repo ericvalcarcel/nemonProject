@@ -50,15 +50,15 @@ class CalculatorView {
                             <input type="text" id="username" name="username" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="operand1">Operando 1:</label>
+                            <label for="operand1">Operand 1:</label>
                             <input type="text" id="operand1" name="operand1" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="operand2">Operando 2:</label>
+                            <label for="operand2">Operand 2:</label>
                             <input type="text" id="operand2" name="operand2" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="operand3">Operando 3:</label>
+                            <label for="operand3">Operand 3:</label>
                             <input type="text" id="operand3" name="operand3" class="form-control">
                         </div>
                         <input type="submit" value="Calcular" class="btn btn-primary">
